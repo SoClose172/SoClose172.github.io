@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animated Face</title>
+    <style>
+        {
+            margin: 0
+        ;
+            padding: 0
+        ;
+            box-sizing: border-box
+        ;
+        }
+        body {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #251801;
+            cursor: pointer;
+
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .face {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ffcd00;
+            border-radius: 50%;
+            margin: 0 20px;
+        }
+
+        .face:hover {
+            background: linear-gradient(180deg, #f44336, #f44336, #ffcd00);
+        }
+        .face:before{
+            content: '';
+            position: absolute;
+            top: 180px;
+            width: 150px;
+            height: 70px;
+            border-bottom-left-radius: 70px;
+            border-bottom-right-radius: 70px;
+            background: #b57700;
+            transition: 0.5s;
+        }
+         .face:hover:before{
+             top: 210px;
+             width: 150px;
+             height: 20px;
+             background: #9d0b00;
+         }
+        .eyes{
+            position: relative;
+            top: -40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .eye{
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 20px;
+            display: block;
+            background: #fff;
+            border-radius: 50%;
+        }
+        .eye:before{
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 25px;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: black;
+            border-radius: 50%;
+        }
+        h2{
+            position: absolute;
+            top: 20px;
+            color: white;
+            font-size: 3em;
+        }
+        h2:last-child{
+            position: absolute;
+            top: initial;
+            bottom: 20px;
+            font-size: 3em;
+
+        }
+    </style>
+
+</head>
+<body>
+<section class="container">
+<h2>Dont hover me!</h2>
+    <div class="face">
+        <div class="eyes">
+            <span class="eye"></span>
+            <span class="eye"></span>
+        </div>
+    </div>
+    <div class="face">
+        <div class="eyes">
+            <span class="eye"></span>
+            <span class="eye"></span>
+        </div>
+    </div>
+    <div class="face">
+        <div class="eyes">
+            <span class="eye"></span>
+            <span class="eye"></span>
+        </div>
+    </div>
+    <h2>i dont like it</h2>
+</section>
+<script type="text/javascript">
+    document.querySelector("body").addEventListener('mousemove',eyeball);
+    function eyeball() {
+        var eye = document.querySelectorAll(".eye");
+        eye.forEach(function (eye) {
+            let x = (eye.getBoundingClientRect().left) + (eye.clientWidth / 2);
+            let y = (eye.getBoundingClientRect().top) + (eye.clientHeight / 2);
+            let radian = Math.atan2(event.pageX - x, event.pageY - y);
+            let rot = (radian*(180 / Math.PI) * -1) +270;
+            eye.style.transform = "rotate("+ rot +"deg)";
+
+        });
+
+    }
+</script>
+</body>
+</html>
